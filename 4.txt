@@ -1,0 +1,46 @@
+mysql -u root -p
+
+CREATE DATABASE pokedumb;
+
+CREATE TABLE pokemon_tb (
+  id INT(11) AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50),
+  str VARCHAR(30),
+  def VARCHAR(30),
+  photo VARCHAR(100)
+
+);
+
+CREATE TABLE element_tb(
+  id INT(11) AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30)
+);
+
+CREATE TABLE poke_element(
+  id INT(11) AUTO_INCREMENT PRIMARY KEY,
+  pokemon_id INT(11),
+  element_name VARCHAR(30)
+);
+
+
+INSERT INTO pokemon_tb(name,str,def,photo) VALUES ('bulbasaur','50','50','bulbasaur.jpg');
+INSERT INTO pokemon_tb(name,str,def,photo) VALUES ('pikachu','70','30','pikachu.jpg');
+INSERT INTO pokemon_tb(name,str,def,photo) VALUES ('squirtle','40','60','squirtle.png');
+
+
+INSERT INTO element_tb(name) VALUES ('tanah');
+INSERT INTO element_tb(name) VALUES ('petir');
+INSERT INTO element_tb(name) VALUES ('air');
+INSERT INTO element_tb(name) VALUES ('poison');
+
+
+INSERT INTO poke_element(pokemon_id,element_name) VALUES ('1','tanah');
+INSERT INTO poke_element(pokemon_id,element_name) VALUES ('1','poison');
+INSERT INTO poke_element(pokemon_id,element_name) VALUES ('2','petir');
+INSERT INTO poke_element(pokemon_id,element_name) VALUES ('3','air');
+
+SELECT * FROM pokemon_tb;
+
+SELECT * FROM pokemon_tb pk JOIN poke_element pe ON pk.id = pe.pokemon_id WHERE element_name='tanah';
+
+SELECT * FROM pokemon_tb pk JOIN poke_element pe ON pk.id = pe.pokemon_id;
